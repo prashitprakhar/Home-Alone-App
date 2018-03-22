@@ -1,0 +1,10 @@
+.roomie-details{
+    float: left;
+    width: 200px;
+}
+.roomie-name{
+    float: left;
+}
+.roomie-status{
+    float: right;
+}
