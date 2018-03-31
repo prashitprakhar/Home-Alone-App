@@ -1,3 +1,8 @@
-<p>
-  roomie-messages works!
-</p>
+<div>
+  <form class="message-form-controller">
+    <mat-form-field class="message-box-control">
+      <input matInput placeholder="Leave a message..." [(ngModel)]="roomieMessage" name="roomieMessage">
+    </mat-form-field>
+    <button mat-raised-button (click)="leaveMessage()">Send</button>
+  </form>
+</div>

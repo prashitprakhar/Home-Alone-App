@@ -1,0 +1,10 @@
+.roomie-messages{
+    float: left;
+    width: 250px;
+}
+.roomie-name-message-block{
+    float: left;
+}
+.roomie-message{
+    float: right;
+}
