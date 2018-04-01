@@ -13,7 +13,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 
 
+
 import { AppComponent } from './app.component';
+import { RouterModule } from '@angular/router';
 import { RoomPageComponent } from './room-page/room-page.component';
 import { RoomieStatusComponent } from './roomie-status/roomie-status.component';
 import { RoomieMessagesComponent } from './roomie-messages/roomie-messages.component';
@@ -21,6 +23,11 @@ import { ManageRoomieComponent } from './manage-roomie/manage-roomie.component';
 import { AllRoomieMessagesComponent } from './all-roomie-messages/all-roomie-messages.component';
 
 import { RoomieDbService } from './services/roomie-db.service';
+import { AllRoomieLoginPageComponent } from './all-roomie-login-page/all-roomie-login-page.component';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import { AllRoomieManagementPageComponent } from './all-roomie-management-page/all-roomie-management-page.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AllRoomieHomePageComponent } from './all-roomie-home-page/all-roomie-home-page.component';
 
 
 @NgModule({
@@ -30,7 +37,12 @@ import { RoomieDbService } from './services/roomie-db.service';
     RoomieStatusComponent,
     RoomieMessagesComponent,
     ManageRoomieComponent,
-    AllRoomieMessagesComponent
+    AllRoomieMessagesComponent,
+    AllRoomieHomePageComponent,
+    AllRoomieLoginPageComponent,
+    ProfilePageComponent,
+    AllRoomieManagementPageComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +54,25 @@ import { RoomieDbService } from './services/roomie-db.service';
     MatFormFieldModule,
     MatInputModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: AllRoomieLoginPageComponent
+      },
+      {
+        path: 'profile/:username',
+        component: ProfilePageComponent
+      },
+      {
+        path: 'roommanagement/:username',
+        component: AllRoomieManagementPageComponent
+      },
+      {
+        path: '**',
+        component: NotFoundComponent
+      }
+    ])
   ],
   providers: [
     RoomieDbService
