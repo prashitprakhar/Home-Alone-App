@@ -9,6 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormField, MatFormFieldModule, MatFormFieldControl } from '@angular/material/form-field';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database-deprecated';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+//import { AngularFireAuth } from 'angularfire2/auth';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { environment } from '../environments/environment';
 
@@ -21,6 +23,7 @@ import { RoomieStatusComponent } from './roomie-status/roomie-status.component';
 import { RoomieMessagesComponent } from './roomie-messages/roomie-messages.component';
 import { ManageRoomieComponent } from './manage-roomie/manage-roomie.component';
 import { AllRoomieMessagesComponent } from './all-roomie-messages/all-roomie-messages.component';
+import { RoomieLogoutComponent } from './roomie-logout/roomie-logout.component';
 
 import { RoomieDbService } from './services/roomie-db.service';
 import { AllRoomieLoginPageComponent } from './all-roomie-login-page/all-roomie-login-page.component';
@@ -28,6 +31,7 @@ import { ProfilePageComponent } from './profile-page/profile-page.component';
 import { AllRoomieManagementPageComponent } from './all-roomie-management-page/all-roomie-management-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { AllRoomieHomePageComponent } from './all-roomie-home-page/all-roomie-home-page.component';
+import { RoomieAuthService } from './services/roomie-auth.service';
 
 
 @NgModule({
@@ -42,7 +46,8 @@ import { AllRoomieHomePageComponent } from './all-roomie-home-page/all-roomie-ho
     AllRoomieLoginPageComponent,
     ProfilePageComponent,
     AllRoomieManagementPageComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    RoomieLogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +60,8 @@ import { AllRoomieHomePageComponent } from './all-roomie-home-page/all-roomie-ho
     MatInputModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
+    //AngularFireAuth,
+    AngularFireAuthModule,
     RouterModule.forRoot([
       {
         path: '',
@@ -69,13 +76,18 @@ import { AllRoomieHomePageComponent } from './all-roomie-home-page/all-roomie-ho
         component: AllRoomieManagementPageComponent
       },
       {
+        path: 'logout',
+        component: RoomieLogoutComponent
+      },
+      {
         path: '**',
         component: NotFoundComponent
       }
     ])
   ],
   providers: [
-    RoomieDbService
+    RoomieDbService,
+    RoomieAuthService
   ],
   bootstrap: [AppComponent]
 })

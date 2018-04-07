@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RoomieAuthService } from '../services/roomie-auth.service';
 
 @Component({
   selector: 'app-profile-page',
@@ -7,7 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilePageComponent implements OnInit {
 
-  constructor() { }
+  user;
+
+  constructor(private authService: RoomieAuthService) { 
+    authService.user$.subscribe((user)=> {
+      if(user){
+      this.user = user.displayName;
+      }
+    });
+  }
 
   ngOnInit() {
   }
